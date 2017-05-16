@@ -47,7 +47,7 @@ if ($ha and $s1) {
 }
 ?>
 ```
-代码审计题目, 看得出爱他是需要接受两个GET参数， `ha` 和 `1s`, `if`的语句表示这两个字符串不能相同，并且md5值相等就会打印出flag的值。
+代码审计题目, 看得出他是需要接受两个GET参数， `ha` 和 `1s`, `if`的语句表示这两个字符串不能相同，并且md5值相等就会打印出flag的值。
 
 我第一反应是md5碰撞，网上找了下， 在(stack overflow)[http://stackoverflow.com/questions/1756004/can-two-different-strings-generate-the-same-md5-hash-code] 找到了一个例子，但是提交却一直不对，于是问了出题人，出题人提示php里面数组是不可哈希的(突然想起来py里面也是这样的)，于是poc如下
 ```html
@@ -86,11 +86,11 @@ var_dump($html);
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>鍝堝笇涓庣瀛﹁鏁版硶鐨勯倐閫?</title>
+        <title>哈希与科学计数法的邂逅</title>
     </head>
     <body>
         <p>view-source</p>
-        <a href="./1.txt" style="visibility: hidden;">鏈変簺濂戒笢瑗?</a>
+        <a href="./1.txt" style="visibility: hidden;">有些好东西</a>
     </body>
 </html>
 <?php
@@ -206,15 +206,13 @@ print t.text
 觉得是学校的服务器的网段，扫了下扫不动，后来才知道这个是教务处的233333333333
 
 搜了下找到改`X-Forwarded-For`头就行了，伪造来源ip, 利用的poc如下
-```bash
-
+```python
 #! coding:utf-8
 import requests
 
-
 url = 'http://119.29.16.200:5004'
 
-r = requests.get(url, headers=payload)
+r = requests.get(url)
 print r.encoding
 r.encoding = 'utf-8'
 print r.text
@@ -414,7 +412,8 @@ poc记不住了,等出题人给writeup吧
 另： 给几个出题人点个赞
 
 
-转载请注明出处。
+转载烦请注明出处。
 
 Les1ie
+
 2017-5-17 00:19:18
