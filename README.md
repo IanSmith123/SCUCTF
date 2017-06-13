@@ -49,10 +49,10 @@ if ($ha and $s1) {
 ```
 代码审计题目, 看得出他是需要接受两个GET参数， `ha` 和 `1s`, `if`的语句表示这两个字符串不能相同，并且md5值相等就会打印出flag的值。
 
-我第一反应是md5碰撞，网上找了下， 在(stack overflow)[http://stackoverflow.com/questions/1756004/can-two-different-strings-generate-the-same-md5-hash-code] 找到了一个例子，但是提交却一直不对，于是问了出题人，出题人提示php里面数组是不可哈希的(突然想起来py里面也是这样的)，于是poc如下
+我第一反应是md5碰撞，网上找了下， 在[stack overflow](http://stackoverflow.com/questions/1756004/can-two-different-strings-generate-the-same-md5-hash-code) 找到了一个例子，但是提交却一直不对，于是问了出题人，出题人提示php里面数组是不可哈希的(突然想起来py里面也是这样的)，于是poc如下
 ```html
  http://119.29.16.200:5009/?ha[]=123&1s[]=4
- ```
+```
  直接请求如下网址即可。
 
  另外，出题人用我的思路做出来了...把之前的字符串转成bin，然后urlencode请求过去，php的exp如下
@@ -113,7 +113,7 @@ if (strstr($flag,'200')) {
 
 问了出题人，出题人直接复制了这一个字符串，右键google...醉醉的，我咋没想到直接google这个数字呢
 
-然后看到了这个一个(介绍)[http://www.rabbit8.cn/569.html] php的哈希缺陷的，(这个也可以看)(https://www.ohlinge.cn/php/0e_md5.html) ，然后页面里面随便选了一个值get提交就ok。 写了个exp如下
+然后看到了这个一个[介绍](http://www.rabbit8.cn/569.html) php的哈希缺陷的，[这个也可以看](https://www.ohlinge.cn/php/0e_md5.html) ，然后页面里面随便选了一个值get提交就ok。 写了个exp如下
 ```python
 import requests
 
